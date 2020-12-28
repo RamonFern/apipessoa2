@@ -37,8 +37,11 @@ public class PessoaService {
 	public Pessoa findById(Long id) {
 		return pessoaRepository.findById(id).orElseThrow(() -> new PessoaNotFoundException(id));
 	}
-	
-	
 
-
+	@Transactional
+	public void delete(Long id) {
+		findById(id);
+		pessoaRepository.deleteById(id);
+	}
+	
 }
