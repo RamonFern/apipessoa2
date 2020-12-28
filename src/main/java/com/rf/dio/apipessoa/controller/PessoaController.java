@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -44,6 +45,13 @@ public class PessoaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaDTO);
 	}
 	
+	@PutMapping("/{id}")
+	public ResponseEntity<PessoaDTO> update(@PathVariable Long id, @RequestBody PessoaDTO pessoaDTO) {
+		Pessoa pessoaAtualizada = pessoaMapper.toPessoa(pessoaDTO);
+		Pessoa pessoa = pessoaService.update(id, pessoaAtualizada);
+		return ResponseEntity.ok(pessoaMapper.toDTO(pessoa));
+	}
+		
 	@GetMapping
 	public ResponseEntity<List<PessoaDTO>> findAll(){
 		List<Pessoa> pessoaList = pessoaService.findAll();

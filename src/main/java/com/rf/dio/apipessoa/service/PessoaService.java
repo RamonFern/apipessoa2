@@ -43,5 +43,18 @@ public class PessoaService {
 		findById(id);
 		pessoaRepository.deleteById(id);
 	}
+
+	@Transactional
+	public Pessoa update(Long id, Pessoa pessoa) {
+		Pessoa pessoaUpdate = findById(id);
+		pessoaUpdate.setPrimeiroNome(pessoa.getPrimeiroNome());
+		pessoaUpdate.setUltimoNome(pessoa.getUltimoNome());
+		pessoaUpdate.setCpf(pessoa.getCpf());
+		pessoaUpdate.setDataNiver(pessoa.getDataNiver());
+		pessoaUpdate.setPhones(pessoa.getPhones());
+		
+		pessoaRepository.save(pessoaUpdate);
+		return pessoaUpdate;
+	}
 	
 }
