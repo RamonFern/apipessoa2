@@ -1,7 +1,11 @@
 package com.rf.dio.apipessoa.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rf.dio.apipessoa.entity.Pessoa;
 import com.rf.dio.apipessoa.repository.PessoaRepository;
@@ -21,7 +25,14 @@ public class PessoaService {
 		Pessoa pessoaSalva = pessoaRepository.save(pessoa);
 		return pessoaSalva;
 	}
+
+
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<Pessoa> findAll() {
+		return pessoaRepository.findAll();
+	}
 	
 	
+
 
 }
