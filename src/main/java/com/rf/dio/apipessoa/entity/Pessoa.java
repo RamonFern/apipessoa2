@@ -1,6 +1,6 @@
 package com.rf.dio.apipessoa.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,7 +37,7 @@ public class Pessoa {
 	@Column(nullable = false, unique = true)
 	private String cpf;
 	
-	private LocalDate dataNiver;
+	private LocalDateTime dataNiver;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Phones> phones;
