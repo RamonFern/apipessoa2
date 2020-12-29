@@ -11,16 +11,13 @@ import com.rf.dio.apipessoa.entity.Pessoa;
 import com.rf.dio.apipessoa.exceptions.PessoaNotFoundException;
 import com.rf.dio.apipessoa.repository.PessoaRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PessoaService {
 	
 	private PessoaRepository pessoaRepository;
-	
-	@Autowired
-	PessoaService(PessoaRepository pessoaRepository) {
-		this.pessoaRepository = pessoaRepository;
-	}
-	
 	
 	public Pessoa createPessoa(Pessoa pessoa) {
 		Pessoa pessoaSalva = pessoaRepository.save(pessoa);

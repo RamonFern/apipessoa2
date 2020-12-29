@@ -20,21 +20,16 @@ import com.rf.dio.apipessoa.entity.Pessoa;
 import com.rf.dio.apipessoa.mapper.PessoaMapper;
 import com.rf.dio.apipessoa.service.PessoaService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/api/v1/pessoa")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PessoaController {
 	
 
 	private final PessoaService pessoaService;
 	private final PessoaMapper pessoaMapper;
-	
-	
-
-	@Autowired
-	PessoaController(PessoaService pessoaService, PessoaMapper pessoaMapper) {
-		this.pessoaService = pessoaService;
-		this.pessoaMapper = pessoaMapper;
-	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
